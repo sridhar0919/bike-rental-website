@@ -1,0 +1,108 @@
+/* Image Section */
+
+img {
+  width: 100%;
+  height: 450px;
+}
+
+.image-section {
+  position: relative;
+  color: white;
+}
+
+.image-section > div {
+  position: absolute;
+  top: 200px;
+  left: 30px;
+  width: 300px;
+  line-height: 1.2;
+}
+
+.image-section > div > h1 {
+  font-size: 35px;
+}
+
+.image-section > div > p {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.image-section > div > button {
+  padding: 10px 30px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #ff3333;
+  color: white;
+}
+
+/* Content first */
+
+.content-first {
+  margin-top: 80px;
+  padding: 0px 200px;
+}
+
+.content-first > p:nth-child(1) {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.content-first > p:nth-child(1) > span {
+  font-weight: 1000;
+}
+
+.content-first > p:nth-child(2) {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Content Second */
+.content-second {
+  margin-top: 50px;
+  background: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url('../images/giulia-ballestri-FXPG7w3SeTA-unsplash.jpg') no-repeat center
+      center/cover;
+}
+
+.second-inside {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  padding-left: 100px;
+  padding-right: 100px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.first-adv {
+  background-color: #ff3333;
+  margin: 0 20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.first-adv > p {
+  display: block;
+  padding: 5px;
+}
+
+.first-adv > p:nth-child(2) {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.first-adv > p:nth-child(3) {
+  font-size: 16px;
+  font-weight: 500;
+}

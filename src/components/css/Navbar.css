@@ -1,0 +1,51 @@
+nav {
+  background-color: #202020;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.route-pages {
+  padding-top: 5px;
+}
+
+.route-pages ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin-left: 100px;
+}
+
+.route-pages ul > li {
+  padding-left: 20px;
+  padding-right: 40px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.route-pages ul > li:hover {
+  color: #ff3333;
+}
+
+.search-section {
+  margin-left: 250px;
+}
+
+.search-section > input {
+  padding: 10px 10px;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+}
+
+.search-section > button {
+  padding: 10px 15px;
+  border-radius: 3px;
+  margin-left: 5px;
+  border: none;
+  cursor: pointer;
+}

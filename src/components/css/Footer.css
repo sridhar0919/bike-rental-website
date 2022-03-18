@@ -1,0 +1,44 @@
+/* Content Third */
+
+.main-third {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.content-third {
+  background-color: #202020;
+  padding: 30px 100px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.total-location {
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  padding-top: 20px;
+}
+
+.total-location > div {
+  width: 200px;
+  padding-right: 30px;
+}
+
+.contact-detail {
+  padding-left: 80px;
+}
+
+.details-con {
+  padding-top: 20px;
+  font-size: 16px;
+}
+
+.copyright {
+  text-align: center;
+  background-color: #202020;
+  padding-bottom: 20px;
+  color: white;
+  font-size: 14px;
+}

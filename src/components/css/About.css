@@ -1,0 +1,25 @@
+.title-about {
+  background: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url('../images/harley-davidson-02tt7EvQKhw-unsplash.jpg') no-repeat center
+      center/cover;
+  height: 200px;
+}
+
+.title-about > h1 {
+  text-align: center;
+  color: white;
+  padding: 100px;
+  font-size: 40px;
+}
+
+.about-section {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.about-section > p {
+  margin-top: 20px;
+  padding: 0 220px;
+  font-size: 16px;
+}

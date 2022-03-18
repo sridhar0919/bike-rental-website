@@ -1,0 +1,176 @@
+.desc-mainwhole {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.desc-maincontentlefttop > div:nth-child(1) > div:nth-child(2) {
+  color: #ff3333;
+  padding-top: 20px;
+}
+
+.desc-maincontentlefttop > div:nth-child(1) > div:nth-child(2) > h2 > span {
+  font-size: 12px;
+  color: #36454f;
+}
+
+.desc-maincontentlefttop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.desc-maincontentlefttop > div:nth-child(2) > img {
+  width: 350px;
+  height: 250px;
+}
+
+.desc-iconsleft {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.desc-iconsleft1 {
+  text-align: center;
+  width: 120px;
+  margin-right: 30px;
+  border: 1px solid #b2beb5;
+  padding: 10px 20px;
+}
+
+.desc-iconsleft1 > div:nth-child(1) {
+  color: #b2beb5;
+}
+
+.desc-iconsleft1 > div:nth-child(2) {
+  font-size: 20px;
+  padding-top: 5px;
+}
+
+.desc-iconsleft1 > div:nth-child(3) {
+  font-size: 11px;
+  color: #ff3333;
+}
+
+.totalbelowcontent {
+  display: flex;
+  flex-direction: row;
+}
+
+.desc-contentbelow {
+  margin-top: 50px;
+  border: 1px solid #e5e4e2;
+}
+
+.desc-contentbelowtitle {
+  display: flex;
+  flex-direction: row;
+  background-color: #e5e4e2;
+  width: 580px;
+}
+
+.belowtitle1 {
+  padding: 10px 20px;
+  margin: 0 0px;
+  border: #36454f;
+}
+
+.belowtitle1:hover {
+  background-color: #ff3333;
+  cursor: pointer;
+}
+
+.desc-contentbelowfull {
+  padding: 20px 20px;
+  width: 580px;
+}
+
+td {
+  padding: 5px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #36454f;
+}
+
+th {
+  text-align: left;
+  padding: 5px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  background-color: #e5e4e2;
+}
+
+table,
+td {
+  border: 2px solid #e5e4e2;
+  border-collapse: collapse;
+}
+
+tr > td:nth-child(2) {
+  text-align: center;
+}
+
+.accessories-contentactive {
+  display: block;
+  padding: 20px;
+}
+
+.accessories-content {
+  display: none;
+  padding: 20px;
+}
+
+.descabout-contentactive {
+  display: block;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #36454f;
+  font-weight: 600;
+}
+
+.descabout-content {
+  display: none;
+}
+
+.booking-form {
+  margin-top: 50px;
+  margin-left: 50px;
+  padding: 20px 30px;
+  background-color: #e5e4e2;
+  width: 260px;
+}
+
+.bookform-submit {
+  margin-top: 30px;
+}
+
+.bookform-submit > input {
+  margin: 10px 0;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.bookform-submit > textarea {
+  margin: 10px 0;
+  height: 100px;
+  width: 200px;
+  padding: 10px 10px;
+}
+
+.bookform-button {
+  background-color: #ff3333;
+  margin-top: 20px;
+  color: white;
+  padding: 15px 10px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+
+  cursor: pointer;
+}

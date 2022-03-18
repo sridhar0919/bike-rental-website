@@ -1,0 +1,94 @@
+.title-contactdetails {
+  background: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url('../images/philip-myrtorp-tSZJmIDcBr8-unsplash.jpg') no-repeat center
+      center/cover;
+  height: 200px;
+}
+
+.title-contactdetails > h1 {
+  text-align: center;
+  color: white;
+  padding: 100px;
+  font-size: 40px;
+}
+
+.totalcontent-contact {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.contact-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 75px;
+  margin-bottom: 50px;
+}
+
+.form-content {
+  width: 400px;
+  height: 500px;
+  padding: 30px 20px;
+  text-align: center;
+  background-color: #e5e4e2;
+}
+
+.form-content > form {
+  padding: 20px 0;
+}
+
+.form-content > form > input {
+  width: 300px;
+  padding: 15px 5px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-content > form > textarea {
+  width: 300px;
+  height: 100px;
+  padding: 15px 5px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.message-button {
+  background-color: #ff3333;
+  margin-top: 20px;
+  color: white;
+  padding: 15px 10px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.details-rightcontent {
+  width: 350px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 120px;
+  color: white;
+  padding-bottom: 150px;
+  background-color: #ff3333;
+}
+
+.details-full > p:nth-child(1) {
+  margin-top: 10px;
+}
+
+.details-full > p {
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.details-full > p > span {
+  font-weight: 600;
+}
