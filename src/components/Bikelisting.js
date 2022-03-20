@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/Bikelisting.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import axios from 'axios';
 import recentBike1 from './images/yamaha-r15.webp';
 import recentBike2 from './images/ktm-duke390.webp';
 import recentBike3 from './images/suzuki-gixxer.webp';
@@ -10,6 +11,20 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Bikelisting() {
   const navigate = useNavigate();
+  const [homeBikes, setHomeBikes] = useState(null);
+
+  const getHomeBikes = () => {
+    axios
+      .get('http://localhost:4000/get-homebikes')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getHomeBikes();
+  }, []);
   return (
     <div>
       <Navbar />
@@ -117,7 +132,7 @@ export default function Bikelisting() {
                 <button
                   className="bikesearch-button"
                   onClick={(e) => {
-                    navigate('/bike-specs');
+                    navigate('/bike-specs/KTM?vehicle=Yamaha');
                   }}
                 >
                   View Details&nbsp;<i class="fa-solid fa-angles-right"></i>

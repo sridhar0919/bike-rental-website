@@ -50,7 +50,7 @@ Suzuki
 2 seats -- 2020 -- petrol
 
 It returns a certified mileage of 55.89 kmpl.This variant is available in 6 colours: Metallic Matte Black,Metallic Matte Brodeaux Red,Metallic Matte Fibroin Grey,Pearl 
-Mirage White,Pearl Suzuki Medium Blue,Glossy Grey.It is powered by 124 cc engine and puts a power of 8.7 PS . Torque remains at 10 Nm .
+Mirage White,Pearl Suzuki Medium Blue,Glossy Grey.It is powered by 124 cc engine and puts a power of 8.7 PS . Torque remains at 10 Nm.
 
 
 2. suzuki-gixxer
@@ -87,7 +87,7 @@ KTM
 
 The 2021 125 Duke features a sportier bodywork, similar to the KTM 200 Duke. Along with the sporty panels, the seats have been changed resulting in revised 
 ergonomics. The fuel tank capacity has also been increased by 2.5 litres, to 13.5 litres. The full-digital instrument console comes with readouts like a gear 
-position indicator, real-time fuel efficiency, average fuel efficiency
+position indicator, real-time fuel efficiency, average fuel efficiency.
 
 2. ktm-duke200
 2 seats -- 2017 -- petrol

@@ -15,7 +15,7 @@ const routing = (
       <Route exact path="/" element={<Homepage />} />
       <Route exact path="/about" element={<About />} />
       <Route exact path="/bike-listing" element={<Bikelisting />} />
-      <Route exact path="/bike-specs" element={<Bikespecs />} />
+      <Route exact path="/bike-specs/:brand" element={<Bikespecs />} />
       <Route exact path="/contact" element={<Contact />} />
     </Routes>
   </Router>
