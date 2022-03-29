@@ -1,0 +1,59 @@
+.verifyemail-total {
+  padding: 80px 250px;
+  display: flex;
+  flex-direction: row;
+}
+
+.verifyemail-content {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 5px;
+  background-color: #e5e4e2;
+}
+
+.verifyemail-content > h1 {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.verifyemail-content > h4 {
+  text-align: center;
+  padding: 10px 0;
+  width: 300px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.verifyemail-button {
+  background-color: #ff3333;
+  margin-top: 20px;
+  color: white;
+  padding: 15px 10px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.verifyemail-para {
+  padding: 5px 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.verifyemail-link {
+  color: #ff3333;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.verifyemail-link:hover {
+  text-decoration: underline;
+}

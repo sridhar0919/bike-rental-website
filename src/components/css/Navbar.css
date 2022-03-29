@@ -43,9 +43,12 @@ nav {
 }
 
 .search-section > button {
-  padding: 10px 15px;
-  border-radius: 3px;
-  margin-left: 5px;
+  padding: 10px 30px;
   border: none;
+  margin: 0 5px;
+  border-radius: 5px;
+  font-size: 18px;
   cursor: pointer;
+  background-color: #ff3333;
+  color: white;
 }

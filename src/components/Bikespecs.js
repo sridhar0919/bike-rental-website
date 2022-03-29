@@ -1,200 +1,315 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import './css/Bikespecs.css';
 import titleBike1 from './images/ktm-duke390.webp';
+import { Navigate, useParams, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Bikespecs() {
   const [accessoriesItem, setAccessoriesItem] = useState(false);
   const [overviewItem, setOverviewItem] = useState(true);
+  const [currentBike, setCurrentBike] = useState(null);
+  const [loginForm, setLoginForm] = useState(false);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+  const { brand } = useParams();
+
+  const [vehicle, setVehicle] = useSearchParams();
+
+  const bookRideSubmit = () => {
+    if (sessionStorage.getItem('logged_in') === 'yes') {
+      toast.success('Ride booked successfully');
+      setStartDate('');
+      setEndDate('');
+      setMessage('');
+    } else {
+      toast.error('Login to book your ride!!');
+      navigate('/login');
+    }
+  };
+
+  const getCurrentBike = () => {
+    const vehicleName = vehicle.get('vehicle');
+    axios
+      .get(
+        `https://bikerental-portal.herokuapp.com/get-currentbike/${brand}?vehicle=${vehicleName}`
+      )
+      .then((res) => {
+        setCurrentBike(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getCurrentBike();
+  });
 
   return (
     <div>
+      <ToastContainer />
       <Navbar />
-      <div className="desc-mainwhole">
-        <div className="desc-maincontent">
-          <div className="desc-maincontentleft">
-            <div className="desc-maincontentlefttop">
-              <div>
+      {currentBike && (
+        <div className="desc-mainwhole">
+          <div className="desc-maincontent">
+            <div className="desc-maincontentleft">
+              <div className="desc-maincontentlefttop">
                 <div>
-                  <h1>KTM, Duke390</h1>
+                  <div>
+                    <h1>{currentBike.title}</h1>
+                  </div>
+                  <div>
+                    <h2>
+                      &#8377;{currentBike.rentAmountPerDay} <span>Per Day</span>
+                    </h2>
+                  </div>
+                  <div className="desc-iconsleft">
+                    <div className="desc-iconsleft1">
+                      <div>
+                        <i class="fa-solid fa-2x fa-calendar-days"></i>
+                      </div>
+                      <div>{currentBike.yearOfModel}</div>
+                      <div>Reg Year</div>
+                    </div>
+                    <div className="desc-iconsleft1">
+                      <div>
+                        <i class="fa-solid fa-2x fa-gears"></i>
+                      </div>
+                      <div>{currentBike.fuelType}</div>
+                      <div>Fuel Type</div>
+                    </div>
+                    <div className="desc-iconsleft1">
+                      <div>
+                        <i class="fa-solid fa-2x fa-user-plus"></i>
+                      </div>
+                      <div>{currentBike.noOfSeats}</div>
+                      <div>Seats</div>
+                    </div>
+                  </div>
                 </div>
                 <div>
-                  <h2>
-                    &#8377;12,000 <span>Per Day</span>
-                  </h2>
-                </div>
-                <div className="desc-iconsleft">
-                  <div className="desc-iconsleft1">
-                    <div>
-                      <i class="fa-solid fa-2x fa-calendar-days"></i>
-                    </div>
-                    <div>2012</div>
-                    <div>Reg Year</div>
-                  </div>
-                  <div className="desc-iconsleft1">
-                    <div>
-                      <i class="fa-solid fa-2x fa-gears"></i>
-                    </div>
-                    <div>Petrol</div>
-                    <div>Fuel Type</div>
-                  </div>
-                  <div className="desc-iconsleft1">
-                    <div>
-                      <i class="fa-solid fa-2x fa-user-plus"></i>
-                    </div>
-                    <div>2</div>
-                    <div>Seats</div>
-                  </div>
+                  <img src={currentBike.imageUrl} alt="" />
                 </div>
               </div>
-              <div>
-                <img src={titleBike1} alt="" />
-              </div>
-            </div>
-            <div className="totalbelowcontent">
-              <div className="desc-contentbelow">
-                <div className="desc-contentbelowtitle">
-                  <div
-                    className="belowtitle1"
-                    style={
-                      overviewItem
-                        ? { backgroundColor: '#ff3333', color: 'white' }
-                        : { backgroundColor: '#e5e4e2', color: 'black' }
-                    }
-                    onClick={(e) => {
-                      setOverviewItem(!overviewItem);
-                      setAccessoriesItem(!accessoriesItem);
+              <div className="totalbelowcontent">
+                <div className="desc-contentbelow">
+                  <div className="desc-contentbelowtitle">
+                    <div
+                      className="belowtitle1"
+                      style={
+                        overviewItem
+                          ? { backgroundColor: '#ff3333', color: 'white' }
+                          : { backgroundColor: '#e5e4e2', color: 'black' }
+                      }
+                      onClick={(e) => {
+                        setOverviewItem(!overviewItem);
+                        setAccessoriesItem(!accessoriesItem);
+                      }}
+                    >
+                      <p>Vehicle Overview</p>
+                    </div>
+                    <div
+                      className="belowtitle1"
+                      style={
+                        accessoriesItem
+                          ? { backgroundColor: '#ff3333', color: 'white' }
+                          : { backgroundColor: '#e5e4e2', color: 'black' }
+                      }
+                      onClick={(e) => {
+                        setOverviewItem(!overviewItem);
+                        setAccessoriesItem(!accessoriesItem);
+                      }}
+                    >
+                      <p>Accessories</p>
+                    </div>
+                  </div>
+                  <div className="desc-contentbelowfull">
+                    <div
+                      className={
+                        overviewItem
+                          ? 'descabout-contentactive'
+                          : 'descabout-content'
+                      }
+                    >
+                      <p>{currentBike.overview}</p>
+                    </div>
+                    <div
+                      className={
+                        accessoriesItem
+                          ? 'accessories-contentactive'
+                          : 'accessories-content'
+                      }
+                    >
+                      <table style={{ width: '100%' }}>
+                        <tr>
+                          <th>ACCESSORIES</th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td>Antilock Braking System</td>
+                          {currentBike.accessories[0].antiLockBraking ==
+                          'Yes' ? (
+                            <td>
+                              <i
+                                class="fa-solid fa-check"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          ) : (
+                            <td>
+                              <i
+                                class="fa-solid fa-xmark"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          )}
+                        </tr>
+                        <tr>
+                          <td>Smooth Handling</td>
+                          {currentBike.accessories[0].smoothHandling ==
+                          'Yes' ? (
+                            <td>
+                              <i
+                                class="fa-solid fa-check"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          ) : (
+                            <td>
+                              <i
+                                class="fa-solid fa-xmark"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          )}
+                        </tr>
+                        <tr>
+                          <td>Leather Seats</td>
+                          {currentBike.accessories[0].leatherSeats === 'Yes' ? (
+                            <td>
+                              <i
+                                class="fa-solid fa-check"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          ) : (
+                            <td>
+                              <i
+                                class="fa-solid fa-xmark"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          )}
+                        </tr>
+                        <tr>
+                          <td>Central Locking</td>
+                          {currentBike.accessories[0].centralLocking ===
+                          'Yes' ? (
+                            <td>
+                              <i
+                                class="fa-solid fa-check"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          ) : (
+                            <td>
+                              <i
+                                class="fa-solid fa-xmark"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          )}
+                        </tr>
+                        <tr>
+                          <td>Brake Assist</td>
+                          {currentBike.accessories[0].brakeAssist === 'Yes' ? (
+                            <td>
+                              <i
+                                class="fa-solid fa-check"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          ) : (
+                            <td>
+                              <i
+                                class="fa-solid fa-xmark"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          )}
+                        </tr>
+                        <tr>
+                          <td>Crash Sensor</td>
+                          {currentBike.accessories[0].crashSensor === 'Yes' ? (
+                            <td>
+                              <i
+                                class="fa-solid fa-check"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          ) : (
+                            <td>
+                              <i
+                                class="fa-solid fa-xmark"
+                                style={{ color: '#ff3333', fontSize: '18px' }}
+                              ></i>
+                            </td>
+                          )}
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div className="booking-form">
+                  <h3>
+                    <i
+                      class="fa-solid fa-envelope"
+                      style={{ color: '#ff3333' }}
+                    ></i>
+                    &nbsp;Book Now
+                  </h3>
+                  <form
+                    className="bookform-submit"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      bookRideSubmit();
                     }}
                   >
-                    <p>Vehicle Overview</p>
-                  </div>
-                  <div
-                    className="belowtitle1"
-                    style={
-                      accessoriesItem
-                        ? { backgroundColor: '#ff3333', color: 'white' }
-                        : { backgroundColor: '#e5e4e2', color: 'black' }
-                    }
-                    onClick={(e) => {
-                      setOverviewItem(!overviewItem);
-                      setAccessoriesItem(!accessoriesItem);
-                    }}
-                  >
-                    <p>Accessories</p>
-                  </div>
+                    <input
+                      type="text"
+                      placeholder="From Date (dd/mm/yyyy)"
+                      value={startDate}
+                      onChange={(e) => setStartDate(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="To Date (dd/mm/yyyy)"
+                      value={endDate}
+                      onChange={(e) => setEndDate(e.target.value)}
+                      required
+                    />
+                    <textarea
+                      name="message"
+                      placeholder="Message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                    />
+                    <button className="bookform-button">BOOK YOUR RIDE</button>
+                  </form>
                 </div>
-                <div className="desc-contentbelowfull">
-                  <div
-                    className={
-                      overviewItem
-                        ? 'descabout-contentactive'
-                        : 'descabout-content'
-                    }
-                  >
-                    <p>
-                      The Yamaha MT-15 naked bike features an all-LED headlamp
-                      and tail lamp, whereas the indicators are bulbs. The LED
-                      indicators are optional and available as an accessory for
-                      Rs 1,490 a pair.
-                    </p>
-                  </div>
-                  <div
-                    className={
-                      accessoriesItem
-                        ? 'accessories-contentactive'
-                        : 'accessories-content'
-                    }
-                  >
-                    <table style={{ width: '100%' }}>
-                      <tr>
-                        <th>ACCESSORIES</th>
-                        <th></th>
-                      </tr>
-                      <tr>
-                        <td>Antilock Braking System</td>
-                        <td>
-                          <i
-                            class="fa-solid fa-check"
-                            style={{ color: '#ff3333', fontSize: '18px' }}
-                          ></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Smooth Handling</td>
-                        <td>
-                          <i
-                            class="fa-solid fa-check"
-                            style={{ color: '#ff3333', fontSize: '18px' }}
-                          ></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Smooth Handling</td>
-                        <td>
-                          <i
-                            class="fa-solid fa-check"
-                            style={{ color: '#ff3333', fontSize: '18px' }}
-                          ></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Smooth Handling</td>
-                        <td>
-                          <i
-                            class="fa-solid fa-check"
-                            style={{ color: '#ff3333', fontSize: '18px' }}
-                          ></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Smooth Handling</td>
-                        <td>
-                          <i
-                            class="fa-solid fa-check"
-                            style={{ color: '#ff3333', fontSize: '18px' }}
-                          ></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Smooth Handling</td>
-                        <td>
-                          <i
-                            class="fa-solid fa-check"
-                            style={{ color: '#ff3333', fontSize: '18px' }}
-                          ></i>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              <div className="booking-form">
-                <h3>
-                  <i
-                    class="fa-solid fa-envelope"
-                    style={{ color: '#ff3333' }}
-                  ></i>
-                  &nbsp;Book Now
-                </h3>
-                <form className="bookform-submit">
-                  <input
-                    type="text"
-                    placeholder="From Date (dd/mm/yyyy)"
-                    required
-                  />
-                  <input
-                    type="text"
-                    placeholder="To Date (dd/mm/yyyy)"
-                    required
-                  />
-                  <textarea name="message" placeholder="Message" required />
-                  <button className="bookform-button">BOOK YOUR RIDE</button>
-                </form>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -48,10 +48,35 @@ export default function Navbar() {
           </ul>
         </div>
         <form className="search-section">
-          <input type="text" id="search" name="search" placeholder="Search" />
-          <button>
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <button
+            type="submit"
+            onClick={(e) => {
+              navigate('/bike-listing');
+            }}
+          >
+            Book Now
           </button>
+          {sessionStorage.getItem('logged_in') === 'yes' ? (
+            <button
+              type="submit"
+              onClick={(e) => {
+                sessionStorage.removeItem('logged_in');
+                window.location.replace('/');
+                navigate('/');
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              type="submit"
+              onClick={(e) => {
+                navigate('/login');
+              }}
+            >
+              Login/Register
+            </button>
+          )}
         </form>
       </nav>
     </div>

@@ -13,7 +13,6 @@ export default function Homepage() {
         <div>
           <h1>FIND YOUR PERFECT BIKE</h1>
           <p>We have some amazing bikes for you to choose.</p>
-          <button type="submit">Book Now</button>
         </div>
       </div>
       <div className="home-content">

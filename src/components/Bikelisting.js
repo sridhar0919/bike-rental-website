@@ -12,14 +12,29 @@ import { useNavigate } from 'react-router-dom';
 export default function Bikelisting() {
   const navigate = useNavigate();
   const [homeBikes, setHomeBikes] = useState(null);
+  const [brand, setBrand] = useState(null);
+  const [brandBikes, setBrandBikes] = useState(null);
 
   const getHomeBikes = () => {
     axios
-      .get('http://localhost:4000/get-homebikes')
+      .get('https://bikerental-portal.herokuapp.com/get-homebikes/')
       .then((res) => {
-        console.log(res);
+        setHomeBikes(res.data);
       })
       .catch((err) => console.log(err));
+  };
+
+  const searchBrandSubmit = (e) => {
+    e.preventDefault();
+    setHomeBikes(null);
+    axios
+      .get(`https://bikerental-portal.herokuapp.com/get-bike/${brand}`)
+      .then((res) => {
+        setBrandBikes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -38,21 +53,24 @@ export default function Bikelisting() {
               <i class="fa-solid fa-filter" style={{ color: '#ff3333' }}></i>{' '}
               Find Your Bike
             </h3>
-            <form className="search-form">
-              <select className="bike-option">
+            <form className="search-form" onSubmit={searchBrandSubmit}>
+              <select
+                className="bike-option"
+                onChange={(e) => {
+                  setBrand(e.target.value);
+                }}
+              >
                 <option>Select Brand</option>
-                <option value="ktm">KTM</option>
-                <option value="bajaj">Bajaj</option>
-                <option value="honda">Honda</option>
-                <option value="suzuki">Suzuki</option>
-                <option value="yamaha">Yamaha</option>
-                <option value="ducati">Ducati</option>
+                <option value="KTM">KTM</option>
+                <option value="Bajaj">Bajaj</option>
+                <option value="Honda">Honda</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Ducati">Ducati</option>
               </select>
-              <select className="fuel-option">
+              <select className="fuel-option" required>
                 <option>Select Fuel Type</option>
-                <option value="ktm">Petrol</option>
-                <option value="bajaj">Diesel</option>
-                <option value="honda">CNG</option>
+                <option value="Petrol">Petrol</option>
               </select>
               <button className="bikesearch-button">
                 <i class="fa-solid fa-magnifying-glass"></i>&nbsp;Search Bike
@@ -100,76 +118,109 @@ export default function Bikelisting() {
         </div>
         <div className="bikelist-full">
           <div className="listing-bikes">
-            <h4>5 Listings</h4>
+            <h4>Available Bike Models</h4>
           </div>
           <div className="bikelist-main">
-            <div className="bikelistcontent-main">
-              <div className="bikelist-mainimg">
-                <img src={mainBike1} alt="" />
-              </div>
-              <div className="bikelist-maindetails">
-                <a>
-                  <h2>Yamaha, YZF-R15</h2>
-                </a>
-                <p>&#8377;12,000 Per Day</p>
-                <div className="bikelist-detailsspecs">
-                  <div className="specs-fulldetails">
-                    <p>
-                      <i class="fa-solid fa-user"></i>&nbsp;2 seats
-                    </p>
+            {homeBikes &&
+              homeBikes.map((menu, index) => {
+                return (
+                  <div className="bikelistcontent-main" key={index}>
+                    <div className="bikelist-mainimg">
+                      <img src={menu.imageUrl} alt="" />
+                    </div>
+                    <div className="bikelist-maindetails">
+                      <a>
+                        <h2>{menu.title}</h2>
+                      </a>
+                      <p>&#8377;{menu.rentAmountPerDay} Per Day</p>
+                      <div className="bikelist-detailsspecs">
+                        <div className="specs-fulldetails">
+                          <p>
+                            <i class="fa-solid fa-user"></i>&nbsp;
+                            {menu.noOfSeats} seats
+                          </p>
+                        </div>
+                        <div className="specs-fulldetails">
+                          <p>
+                            <i class="fa-solid fa-calendar-days"></i>&nbsp;
+                            {menu.yearOfModel}
+                            model
+                          </p>
+                        </div>
+                        <div className="specs-fulldetails">
+                          <p>
+                            <i class="fa-solid fa-motorcycle"></i>&nbsp;
+                            {menu.fuelType}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        className="bikesearch-button"
+                        onClick={(e) => {
+                          navigate(
+                            `/bike-specs/${menu.title.split(',')[0]}?vehicle=${
+                              menu.title
+                            }`
+                          );
+                        }}
+                      >
+                        View Details&nbsp;
+                        <i class="fa-solid fa-angles-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div className="specs-fulldetails">
-                    <p>
-                      <i class="fa-solid fa-calendar-days"></i>&nbsp;2015 model
-                    </p>
+                );
+              })}
+            {brandBikes &&
+              brandBikes.map((menu, index) => {
+                return (
+                  <div className="bikelistcontent-main" key={index}>
+                    <div className="bikelist-mainimg">
+                      <img src={menu.imageUrl} alt="" />
+                    </div>
+                    <div className="bikelist-maindetails">
+                      <a>
+                        <h2>{menu.title}</h2>
+                      </a>
+                      <p>&#8377;{menu.rentAmountPerDay} Per Day</p>
+                      <div className="bikelist-detailsspecs">
+                        <div className="specs-fulldetails">
+                          <p>
+                            <i class="fa-solid fa-user"></i>&nbsp;
+                            {menu.noOfSeats} seats
+                          </p>
+                        </div>
+                        <div className="specs-fulldetails">
+                          <p>
+                            <i class="fa-solid fa-calendar-days"></i>&nbsp;
+                            {menu.yearOfModel}
+                            model
+                          </p>
+                        </div>
+                        <div className="specs-fulldetails">
+                          <p>
+                            <i class="fa-solid fa-motorcycle"></i>&nbsp;
+                            {menu.fuelType}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        className="bikesearch-button"
+                        onClick={(e) => {
+                          navigate(
+                            `/bike-specs/${menu.title.split(',')[0]}?vehicle=${
+                              menu.title
+                            }`
+                          );
+                        }}
+                      >
+                        View Details&nbsp;
+                        <i class="fa-solid fa-angles-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div className="specs-fulldetails">
-                    <p>
-                      <i class="fa-solid fa-motorcycle"></i>&nbsp;Petrol
-                    </p>
-                  </div>
-                </div>
-                <button
-                  className="bikesearch-button"
-                  onClick={(e) => {
-                    navigate('/bike-specs/KTM?vehicle=Yamaha');
-                  }}
-                >
-                  View Details&nbsp;<i class="fa-solid fa-angles-right"></i>
-                </button>
-              </div>
-            </div>
-            <div className="bikelistcontent-main">
-              <div className="bikelist-mainimg">
-                <img src={mainBike1} alt="" />
-              </div>
-              <div className="bikelist-maindetails">
-                <a>
-                  <h2>Yamaha, YZF-R15</h2>
-                </a>
-                <p>&#8377;12,000 Per Day</p>
-                <div className="bikelist-detailsspecs">
-                  <div className="specs-fulldetails">
-                    <p>
-                      <i class="fa-solid fa-user"></i>&nbsp;2 seats
-                    </p>
-                  </div>
-                  <div className="specs-fulldetails">
-                    <p>
-                      <i class="fa-solid fa-calendar-days"></i>&nbsp;2015 model
-                    </p>
-                  </div>
-                  <div className="specs-fulldetails">
-                    <p>
-                      <i class="fa-solid fa-motorcycle"></i>&nbsp;Petrol
-                    </p>
-                  </div>
-                </div>
-                <button className="bikesearch-button">
-                  View Details&nbsp;<i class="fa-solid fa-angles-right"></i>
-                </button>
-              </div>
-            </div>
+                );
+              })}
           </div>
         </div>
       </div>
