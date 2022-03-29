@@ -33,8 +33,13 @@ router.get('/', function (req, res, next) {
 // Register
 router.post('/register', async (req, res) => {
   try {
-    const user = userModel.find({ email: req.body.email });
+    const user = await userModel
+      .findOne({ email: req.body.email })
+      .then((doc) => {
+        return doc;
+      });
     if (user) {
+      console.log(user);
       res.send({ message: 'User already exists' });
     } else {
       const hash = await hashing(req.body.password);
@@ -48,7 +53,6 @@ router.post('/register', async (req, res) => {
         isVerified: false,
       });
       doc.save();
-
       // send verification mail to user
       const mailOptions = {
         from: '"Verify your email" <sridharsurya9797@gmail.com>',
@@ -57,12 +61,11 @@ router.post('/register', async (req, res) => {
         html: `<h2>${
           doc.fullName.split()[0]
         }! Thanks for registering on our site</h2>
-              <h4>Please verify your email to continue...</h4>
-              <a href="http://${process.env.URL}/verify-email/${
+                <h4>Please verify your email to continue...</h4>
+                <a href="http://${process.env.URL}/verify-email/${
           doc.emailToken
         }">Verify your email</a>`,
       };
-
       //sending mail
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -71,7 +74,6 @@ router.post('/register', async (req, res) => {
           console.log('Verification email sent');
         }
       });
-
       res.send({
         message: 'Account created',
       });
@@ -148,20 +150,28 @@ router.post('/login', async (req, res) => {
 // forgot password
 router.put('/forgot-password', async (req, res) => {
   try {
-    const user = await userModel.findOne({ email: req.body.email });
+    const user = await userModel
+      .findOne({ email: req.body.email })
+      .then((doc) => {
+        return doc;
+      });
     if (user) {
       const token = await createJWT({
         fullName: user.fullName,
         email: user.email,
       });
-      const updatedUser = userModel.findOneAndUpdate(
-        {
-          email: req.body.email,
-        },
-        {
-          emailToken: token,
-        }
-      );
+      const updatedUser = await userModel
+        .findOneAndUpdate(
+          {
+            email: req.body.email,
+          },
+          {
+            emailToken: token,
+          }
+        )
+        .then((doc) => {
+          return doc;
+        });
 
       // sending token
       const mailOptions = {
@@ -182,6 +192,7 @@ router.put('/forgot-password', async (req, res) => {
       });
       res.send({
         message: 'Reset link sent successfully',
+        token: updatedUser.emailToken,
       });
     } else {
       res.send({
@@ -197,18 +208,28 @@ router.put('/forgot-password', async (req, res) => {
 // reset password
 router.put('/reset-password/:token', async (req, res) => {
   const token = req.params.token;
+  console.log(token);
   const mail = await authenticate(token);
+  console.log(mail);
   try {
     if (mail) {
       const hash = await hashing(req.body.password);
-      const user = userModel.findOneAndUpdate(
-        {
-          email: mail,
-        },
-        {
-          password: hash,
-        }
-      );
+      const user = await userModel
+        .findOneAndUpdate(
+          {
+            email: mail,
+          },
+          {
+            password: hash,
+          },
+          {
+            new: true,
+          }
+        )
+        .then((doc) => {
+          return doc;
+        });
+
       res.send({ message: 'Password reset successfully' });
     } else {
       res.send({

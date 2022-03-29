@@ -30,8 +30,11 @@ const createJWT = async ({ fullName, email }) => {
 const authenticate = async (token) => {
   const decode = JWTD(token);
   console.log(decode);
-  if (Math.round(new Date() / 1000) <= decode.exp) return decode.email;
-  else return false;
+  if (Math.round(new Date() / 1000) <= decode.exp) {
+    return decode.email;
+  } else {
+    return false;
+  }
 };
 
 module.exports = { hashing, hashCompare, createJWT, authenticate };
