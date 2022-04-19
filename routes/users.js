@@ -62,7 +62,7 @@ router.post('/register', async (req, res) => {
           doc.fullName.split()[0]
         }! Thanks for registering on our site</h2>
                 <h4>Please verify your email to continue...</h4>
-                <a href="http://${process.env.URL}/verify-email/${
+                <a href="${process.env.URL}/verify-email/${
           doc.emailToken
         }">Verify your email</a>`,
       };
