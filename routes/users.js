@@ -179,7 +179,7 @@ router.put('/forgot-password', async (req, res) => {
         to: user.email,
         subject: 'Password reset link',
         html: `<h2>${user.fullName}! Please reset your password with the below link</h2>
-              <a href="http://${process.env.URL}/reset-password/${updatedUser.emailToken}">Reset Password</a>`,
+              <a href="${process.env.URL}/reset-password/${updatedUser.emailToken}">Reset Password</a>`,
       };
 
       //sending mail
