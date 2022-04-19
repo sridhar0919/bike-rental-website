@@ -46,7 +46,12 @@ export default function Verifyuser() {
             <button className="verifyemail-button">CONFIRM EMAIL</button>
             <p className="verifyemail-para">
               Back to Login!!&nbsp;
-              <a href="/login" className="verifyemail-link">
+              <a
+                className="verifyemail-link"
+                onClick={(e) => {
+                  navigate('/login');
+                }}
+              >
                 LOGIN
               </a>
             </p>

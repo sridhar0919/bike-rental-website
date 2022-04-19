@@ -44,7 +44,12 @@ export default function Forgotpassword() {
             <button className="forgotpwd-button">SEND LINK</button>
             <p className="forgotpwd-para">
               Back to Login!!&nbsp;
-              <a href="/login" className="forgotpwd-link">
+              <a
+                className="forgotpwd-link"
+                onClick={(e) => {
+                  navigate('/login');
+                }}
+              >
                 LOGIN
               </a>
             </p>

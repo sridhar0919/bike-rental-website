@@ -108,7 +108,12 @@ export default function Signup() {
           <button className="signup-button">SIGN UP</button>
           <p className="signup-para">
             Already got an account?&nbsp;
-            <a href="/login" className="signup-link">
+            <a
+              className="signup-link"
+              onClick={(e) => {
+                navigate('/login');
+              }}
+            >
               Login Here
             </a>
           </p>

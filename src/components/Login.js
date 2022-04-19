@@ -76,12 +76,22 @@ export default function Login() {
             <button className="login-button">LOGIN</button>
             <p className="login-para">
               Don't have an account?&nbsp;
-              <a href="/sign-up" className="login-link">
+              <a
+                className="login-link"
+                onClick={(e) => {
+                  navigate('/sign-up');
+                }}
+              >
                 Signup Here
               </a>
             </p>
             <p className="login-para">
-              <a href="/forgot-pwd" className="login-link">
+              <a
+                className="login-link"
+                onClick={(e) => {
+                  navigate('/forgot-pwd');
+                }}
+              >
                 Forgot Password ?
               </a>
             </p>
