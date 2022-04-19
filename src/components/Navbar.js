@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './css/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+  const [isActive, setActive] = useState('false');
   const navigate = useNavigate();
   return (
     <div>
-      <nav>
-        <div className="route-pages">
+      <nav className="navbar">
+        <div className="hamburger-div">
+          <a
+            href="#"
+            className="toggle-button"
+            onClick={() => {
+              setActive(!isActive);
+            }}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </a>
+        </div>
+        <div className={isActive ? 'route-pages active' : 'route-pages'}>
           <ul>
             <li>
               <a
@@ -47,37 +61,39 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <form className="search-section">
-          <button
-            type="submit"
-            onClick={(e) => {
-              navigate('/bike-listing');
-            }}
-          >
-            Book Now
-          </button>
-          {sessionStorage.getItem('logged_in') === 'yes' ? (
+        <div className="form-div">
+          <form className="search-section">
             <button
               type="submit"
               onClick={(e) => {
-                sessionStorage.removeItem('logged_in');
-                window.location.replace('/');
-                navigate('/');
+                navigate('/bike-listing');
               }}
             >
-              Logout
+              Book Now
             </button>
-          ) : (
-            <button
-              type="submit"
-              onClick={(e) => {
-                navigate('/login');
-              }}
-            >
-              Login/Register
-            </button>
-          )}
-        </form>
+            {sessionStorage.getItem('logged_in') === 'yes' ? (
+              <button
+                type="submit"
+                onClick={(e) => {
+                  sessionStorage.removeItem('logged_in');
+                  window.location.replace('/');
+                  navigate('/');
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                type="submit"
+                onClick={(e) => {
+                  navigate('/login');
+                }}
+              >
+                Login/Register
+              </button>
+            )}
+          </form>
+        </div>
       </nav>
     </div>
   );

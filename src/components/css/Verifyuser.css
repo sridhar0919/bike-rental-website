@@ -57,3 +57,253 @@
 .verifyemail-link:hover {
   text-decoration: underline;
 }
+
+@media (min-width: 320px) and (max-width: 374px) {
+  .verifyemail-total {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .verifyemail-image {
+    width: 250px;
+    height: 300px;
+    border-radius: 5px;
+  }
+
+  .verifyemail-content {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    background-color: #e5e4e2;
+    text-align: center;
+    height: 400px;
+  }
+
+  .verifyemail-content > h1 {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .verifyemail-content > h4 {
+    text-align: center;
+    padding: 10px 0;
+    width: 220px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  
+  .verifyemail-button {
+    background-color: #ff3333;
+    margin-top: 20px;
+    color: white;
+    padding: 15px 10px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .verifyemail-para {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 500px) {
+  .verifyemail-total {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .verifyemail-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+
+  .verifyemail-content {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    background-color: #e5e4e2;
+    text-align: center;
+    height: 500px;
+  }
+
+  .verifyemail-content > h1 {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 25px;
+  }
+  
+  .verifyemail-content > h4 {
+    text-align: center;
+    padding: 10px 0;
+    /* width: 220px; */
+    font-size: 14px;
+    font-weight: bold;
+  }
+    
+  
+  .verifyemail-button {
+    background-color: #ff3333;
+    margin-top: 20px;
+    color: white;
+    padding: 15px 10px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .verifyemail-para {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+  .verifyemail-total {
+    /* padding: 50px 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  .verifyemail-image {
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+
+  .verifyemail-content {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    background-color: #e5e4e2;
+    text-align: center;
+    height: 400px;
+  }
+
+  .verifyemail-content > h1 {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .verifyemail-content > h4 {
+    text-align: center;
+    padding: 10px 0;
+    /* width: 220px; */
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  
+  .verifyemail-button {
+    background-color: #ff3333;
+    margin-top: 20px;
+    color: white;
+    padding: 15px 10px;
+    width: 180px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .forgotpwd-para {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .verifyemail-total {
+    /* padding: 70px 50px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .verifyemail-image {
+    width: 300px;
+    height: 500px;
+    border-radius: 5px;
+    /* margin-left: 10px; */
+  }
+
+  .verifyemail-content {
+    padding-top: 70px;
+    padding-bottom: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 5px;
+    background-color: #e5e4e2;
+    height: 500px;
+  }
+
+  
+  
+  .verifyemail-button {
+    background-color: #ff3333;
+    margin-top: 20px;
+    color: white;
+    padding: 15px 10px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .verifyemail-total {
+    /* padding: 70px 100px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .verifyemail-image {
+    width: 300px;
+    height: 480px;
+    border-radius: 5px;
+    /* margin-left: 10px; */
+  }
+}

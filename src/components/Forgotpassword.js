@@ -10,10 +10,13 @@ export default function Forgotpassword() {
 
   const sendLink = (e) => {
     axios
-      .put('http://localhost:4000/users/forgot-password/', {
+      .put('https://bikerental-portal.herokuapp.com/users/forgot-password/', {
         email: emailId,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        setEmailId('');
+      })
       .catch((err) => console.log(err));
     toast.success('Reset password link successfully');
     e.preventDefault();

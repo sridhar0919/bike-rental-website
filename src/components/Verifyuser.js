@@ -43,7 +43,7 @@ export default function Verifyuser() {
               verifySubmit();
             }}
           >
-            <button className="verifyemail-button">SEND LINK</button>
+            <button className="verifyemail-button">CONFIRM EMAIL</button>
             <p className="verifyemail-para">
               Back to Login!!&nbsp;
               <a href="/login" className="verifyemail-link">

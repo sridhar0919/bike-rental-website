@@ -7,6 +7,22 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
+
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+}
 
 export default function Bikespecs() {
   const [accessoriesItem, setAccessoriesItem] = useState(false);
@@ -23,13 +39,12 @@ export default function Bikespecs() {
 
   const bookRideSubmit = () => {
     if (sessionStorage.getItem('logged_in') === 'yes') {
-      toast.success('Ride booked successfully');
+      displayRazorPay(currentBike.rentAmountPerDay);
       setStartDate('');
       setEndDate('');
       setMessage('');
     } else {
       toast.error('Login to book your ride!!');
-      navigate('/login');
     }
   };
 
@@ -44,6 +59,47 @@ export default function Bikespecs() {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const displayRazorPay = async (totalPayment) => {
+    const res = await loadScript(
+      'https://checkout.razorpay.com/v1/checkout.js'
+    );
+    if (!res) {
+      alert('Razorpay SDK failed to load. Are you online?');
+      return;
+    }
+
+    axios
+      .post('https://bikerental-portal.herokuapp.com/create/orderId', {
+        amount: totalPayment * 100,
+      })
+      .then((res) => {
+        console.log(res.data.orderId);
+        const options = {
+          key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+          amount: totalPayment * 100,
+          currency: 'INR',
+          name: 'Bike Rental',
+          description: 'Thank you for using Bike Rental!',
+          image: 'https://example.com/your_logo',
+          order_id: res.data.orderId,
+          handler: function (response) {
+            // alert(`response.razorpay_payment_id`);
+            alert('Ride booked successfully');
+            // alert(response.razorpay_order_id);
+            // alert(response.razorpay_signature);
+            navigate('/');
+          },
+          prefill: {
+            name: 'Sridhar',
+            email: 'sridhar@example.com',
+            contact: '9999999999',
+          },
+        };
+        var paymentObject = new window.Razorpay(options);
+        paymentObject.open();
       });
   };
 
@@ -310,6 +366,7 @@ export default function Bikespecs() {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }

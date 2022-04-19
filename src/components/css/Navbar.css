@@ -1,4 +1,4 @@
-nav {
+.navbar {
   background-color: #202020;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -6,7 +6,7 @@ nav {
   font-weight: bold;
   color: white;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 
 .route-pages {
@@ -51,4 +51,160 @@ nav {
   cursor: pointer;
   background-color: #ff3333;
   color: white;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  float: left;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+  .hamburger-div {
+    margin-bottom: 20px;
+  }
+   
+  .toggle-button {
+    display: flex;
+  }
+
+  .route-pages {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .route-pages ul {
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .route-pages > ul > li {
+    text-align: left;
+    padding: 5px 20px;
+  }
+
+  .route-pages.active {
+    display: flex;
+  }
+
+  .form-div {
+    margin-top: 20px;
+  }
+
+  .search-section {
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .search-section > button {
+    padding: 10px 20px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #ff3333;
+    color: white;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .route-pages {
+    width: 500px;
+  }
+  .route-pages ul {
+    list-style: none;
+    display: flex;
+    width: 450px;
+    flex-direction: row;
+    margin-left: 5px;
+  }
+
+  .route-pages ul > li {
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .search-section {
+    margin-left: -10px;
+    display: flex;
+    flex-direction: row;
+    /* text-align: end; */
+  }
+
+  .search-section > button {
+    padding: 10px 20px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff3333;
+    color: white;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .route-pages {
+    width: 600px;
+  }
+  .route-pages ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+  }
+
+  .route-pages ul > li {
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .search-section {
+    /* margin-left: -10px; */
+    display: flex;
+    flex-direction: row;
+    text-align: end;
+  }
+
+  .search-section > button {
+    padding: 10px 20px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff3333;
+    color: white;
+  }
 }

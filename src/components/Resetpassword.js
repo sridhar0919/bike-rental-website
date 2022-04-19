@@ -17,18 +17,22 @@ export default function Resetpassword() {
     console.log(token);
     if (pwd === confirmPassword) {
       axios
-        .put(`http://localhost:4000/users/reset-password/${token}`, {
-          password: pwd,
-        })
+        .put(
+          `https://bikerental-portal.herokuapp.com/users/reset-password/${token}`,
+          {
+            password: pwd,
+          }
+        )
         .then((res) => {
           console.log(res);
           toast.success('Password reset successfully');
-          navigate('/login');
         })
         .catch((err) => console.log(err));
     } else {
       toast.warning('Password does not match.Kindly enter again');
     }
+    setConfirmPassword('');
+    setPwd('');
   };
 
   return (
@@ -60,6 +64,7 @@ export default function Resetpassword() {
               <input
                 type="password"
                 name="confirm_password"
+                value={confirmPassword}
                 placeholder="Confirm password*"
                 className="resetpwd-inputs"
                 onChange={(e) => setConfirmPassword(e.target.value)}

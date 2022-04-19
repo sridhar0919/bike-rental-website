@@ -12,7 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
   const signIn = () => {
     axios
-      .post('http://localhost:4000/users/login', {
+      .post('https://bikerental-portal.herokuapp.com/users/login', {
         email: emailId,
         password: password,
       })
@@ -28,52 +28,65 @@ export default function Login() {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="login-total">
+    <div>
       <ToastContainer />
       <div>
-        <img src={loginImage} className="login-image" />
-      </div>
-      <div className="loginform-content">
-        <h1>LOGIN</h1>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            signIn();
+        <button
+          className="backhome-buttonlogin"
+          onClick={() => {
+            navigate('/');
           }}
         >
-          <input
-            type="email"
-            name="emailid"
-            value={emailId}
-            placeholder="Email address*"
-            className="login-inputs"
-            autoComplete="off"
-            onChange={(e) => setEmailId(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password*"
-            className="login-inputs"
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="off"
-            required
-          />
-          <button className="login-button">LOGIN</button>
-          <p className="login-para">
-            Don't have an account?&nbsp;
-            <a href="/sign-up" className="login-link">
-              Signup Here
-            </a>
-          </p>
-          <p className="login-para">
-            <a href="/forgot-pwd" className="login-link">
-              Forgot Password ?
-            </a>
-          </p>
-        </form>
+          <i class="fa-solid fa-arrow-left"></i> Back to home
+        </button>
+      </div>
+
+      <div className="login-total">
+        <div>
+          <img src={loginImage} className="login-image" />
+        </div>
+        <div className="loginform-content">
+          <h1>LOGIN</h1>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              signIn();
+            }}
+          >
+            <input
+              type="email"
+              name="emailid"
+              value={emailId}
+              placeholder="Email address*"
+              className="login-inputs"
+              autoComplete="off"
+              onChange={(e) => setEmailId(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password*"
+              className="login-inputs"
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="off"
+              required
+            />
+            <button className="login-button">LOGIN</button>
+            <p className="login-para">
+              Don't have an account?&nbsp;
+              <a href="/sign-up" className="login-link">
+                Signup Here
+              </a>
+            </p>
+            <p className="login-para">
+              <a href="/forgot-pwd" className="login-link">
+                Forgot Password ?
+              </a>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

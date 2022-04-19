@@ -15,7 +15,7 @@ export default function Signup() {
   const createUser = (e) => {
     if (password === confirmPassword) {
       axios
-        .post('http://localhost:4000/users/register/', {
+        .post('https://bikerental-portal.herokuapp.com/users/register/', {
           email: emailId,
           fullname: fullName,
           mobile_number: mobileNumber,
@@ -26,6 +26,11 @@ export default function Signup() {
           if (res.data.message === 'User already exists') {
             toast.error('User already exists!');
           } else {
+            setFullName('');
+            setMobileNumber('');
+            setEmailId('');
+            setPassword('');
+            setConfirmPassword('');
             toast.success(
               'Verification email sent. Kindly click the link to activate the account'
             );
@@ -81,7 +86,7 @@ export default function Signup() {
             required
           />
           <input
-            type="pwd"
+            type="password"
             name="password"
             value={password}
             placeholder="Password*"
@@ -91,7 +96,7 @@ export default function Signup() {
             required
           />
           <input
-            type="pwd"
+            type="password"
             name="confirm_password"
             value={confirmPassword}
             placeholder="Confirm Password*"
