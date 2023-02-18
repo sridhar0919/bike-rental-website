@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import './css/Forgotpassword.css';
 import forgotPasswordImg from './images/kundan-bana-GRhrtoaWDNg-unsplash.jpg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Forgotpassword() {
   const [emailId, setEmailId] = useState(null);
+  const navigate = useNavigate();
 
   const sendLink = (e) => {
     axios
-      .put('https://bikerental-portal.herokuapp.com/users/forgot-password/', {
+      .put('https://bike-rental-m3qg.onrender.com/users/forgot-password/', {
         email: emailId,
       })
       .then((res) => {

@@ -14,11 +14,13 @@ export default function Resetpassword() {
   const navigate = useNavigate();
 
   const resetSubmit = () => {
-    console.log(token);
+    if (token == null) {
+      toast.error('Error! Kindly resend link and try again!!');
+    }
     if (pwd === confirmPassword) {
       axios
         .put(
-          `https://bikerental-portal.herokuapp.com/users/reset-password/${token}`,
+          `https://bike-rental-m3qg.onrender.com/users/reset-password/${token}`,
           {
             password: pwd,
           }

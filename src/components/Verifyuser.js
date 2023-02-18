@@ -1,19 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import './css/Verifyuser.css';
 import verifyUserImg from './images/kundan-bana-GRhrtoaWDNg-unsplash.jpg';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Verifyuser() {
   const { token } = useParams();
+  const navigate = useNavigate();
 
   const verifySubmit = () => {
     axios
-      .get(
-        `https://bikerental-portal.herokuapp.com/users/verify-email/${token}`
-      )
+      .get(`https://bike-rental-m3qg.onrender.com/users/verify-email/${token}`)
       .then((res) => {
         console.log(res);
         toast.success('Email Verified. Account activated successfully');

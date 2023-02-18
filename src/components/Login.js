@@ -12,7 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
   const signIn = () => {
     axios
-      .post('https://bikerental-portal.herokuapp.com/users/login', {
+      .post('https://bike-rental-m3qg.onrender.com/users/login', {
         email: emailId,
         password: password,
       })

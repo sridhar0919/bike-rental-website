@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './css/Signup.css';
 import signupImage from './images/sahaj-patel-xHSCvcFoHaQ-unsplash.jpg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,11 +12,12 @@ export default function Signup() {
   const [emailId, setEmailId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
   const createUser = (e) => {
     if (password === confirmPassword) {
       axios
-        .post('https://bikerental-portal.herokuapp.com/users/register/', {
+        .post('https://bike-rental-m3qg.onrender.com/users/register/', {
           email: emailId,
           fullname: fullName,
           mobile_number: mobileNumber,

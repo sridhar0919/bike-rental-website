@@ -17,7 +17,7 @@ export default function Bikelisting() {
 
   const getHomeBikes = () => {
     axios
-      .get('https://bikerental-portal.herokuapp.com/get-homebikes/')
+      .get('https://bike-rental-m3qg.onrender.com/get-homebikes/')
       .then((res) => {
         setHomeBikes(res.data);
       })
@@ -28,7 +28,7 @@ export default function Bikelisting() {
     e.preventDefault();
     setHomeBikes(null);
     axios
-      .get(`https://bikerental-portal.herokuapp.com/get-bike/${brand}`)
+      .get(`https://bike-rental-m3qg.onrender.com/get-bike/${brand}`)
       .then((res) => {
         setBrandBikes(res.data);
       })
