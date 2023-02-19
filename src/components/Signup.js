@@ -17,7 +17,7 @@ export default function Signup() {
   const createUser = (e) => {
     if (password === confirmPassword) {
       axios
-        .post('https://bike-rental-m3qg.onrender.com/users/register/', {
+        .post('https://bike-rental-ssua.onrender.com/users/register/', {
           email: emailId,
           fullname: fullName,
           mobile_number: mobileNumber,

@@ -14,7 +14,7 @@ export default function Verifyuser() {
 
   const verifySubmit = () => {
     axios
-      .get(`https://bike-rental-m3qg.onrender.com/users/verify-email/${token}`)
+      .get(`https://bike-rental-ssua.onrender.com/users/verify-email/${token}`)
       .then((res) => {
         console.log(res);
         toast.success('Email Verified. Account activated successfully');

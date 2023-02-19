@@ -52,7 +52,7 @@ export default function Bikespecs() {
     const vehicleName = vehicle.get('vehicle');
     axios
       .get(
-        `https://bike-rental-m3qg.onrender.com/get-currentbike/${brand}?vehicle=${vehicleName}`
+        `https://bike-rental-ssua.onrender.com/get-currentbike/${brand}?vehicle=${vehicleName}`
       )
       .then((res) => {
         setCurrentBike(res.data);
@@ -72,7 +72,7 @@ export default function Bikespecs() {
     }
 
     axios
-      .post('https://bike-rental-m3qg.onrender.com/create/orderId', {
+      .post('https://bike-rental-ssua.onrender.com/create/orderId', {
         amount: totalPayment * 100,
       })
       .then((res) => {

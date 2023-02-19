@@ -20,7 +20,7 @@ export default function Resetpassword() {
     if (pwd === confirmPassword) {
       axios
         .put(
-          `https://bike-rental-m3qg.onrender.com/users/reset-password/${token}`,
+          `https://bike-rental-ssua.onrender.com/users/reset-password/${token}`,
           {
             password: pwd,
           }

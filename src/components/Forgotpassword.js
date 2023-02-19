@@ -12,7 +12,7 @@ export default function Forgotpassword() {
 
   const sendLink = (e) => {
     axios
-      .put('https://bike-rental-m3qg.onrender.com/users/forgot-password/', {
+      .put('https://bike-rental-ssua.onrender.com/users/forgot-password/', {
         email: emailId,
       })
       .then((res) => {
